@@ -22,10 +22,10 @@ public class Book {
     @NonNull
     private String author;
     @NonNull
-    private String isbn;
-    @NonNull
     @Column(unique = true)
     private BigDecimal price;
+    @NonNull
+    private String isbn;
     private String description;
     private String coverImage;
 }
