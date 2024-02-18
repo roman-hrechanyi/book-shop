@@ -1,10 +1,13 @@
 package com.grech.service;
 
-import com.grech.model.Book;
+import com.grech.dto.BookDto;
+import com.grech.dto.CreateBookRequestDto;
 import java.util.List;
 
 public interface BookService {
-    Book save(Book book);
+    BookDto save(CreateBookRequestDto requestDto);
 
-    List<Book> findAll();
+    List<BookDto> findAll();
+
+    BookDto findById(Long id);
 }
