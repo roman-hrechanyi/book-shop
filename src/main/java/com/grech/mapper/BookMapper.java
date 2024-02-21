@@ -1,8 +1,8 @@
 package com.grech.mapper;
 
 import com.grech.config.MapperConfig;
-import com.grech.dto.BookDto;
-import com.grech.dto.CreateBookRequestDto;
+import com.grech.dto.book.BookDto;
+import com.grech.dto.book.CreateBookRequestDto;
 import com.grech.model.Book;
 import org.mapstruct.Mapper;
 

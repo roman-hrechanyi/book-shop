@@ -1,7 +1,8 @@
 package com.grech.service;
 
-import com.grech.dto.BookDto;
-import com.grech.dto.CreateBookRequestDto;
+import com.grech.dto.book.BookDto;
+import com.grech.dto.book.BookSearchParameters;
+import com.grech.dto.book.CreateBookRequestDto;
 import java.util.List;
 
 public interface BookService {
@@ -14,4 +15,6 @@ public interface BookService {
     void deleteById(Long id);
 
     BookDto update(Long id, CreateBookRequestDto requestDto);
+
+    List<BookDto> search(BookSearchParameters searchParameters);
 }
