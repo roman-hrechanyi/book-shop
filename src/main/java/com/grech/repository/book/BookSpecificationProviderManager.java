@@ -1,5 +1,6 @@
 package com.grech.repository.book;
 
+import com.grech.exception.EntityNotFoundException;
 import com.grech.model.Book;
 import com.grech.repository.SpecificationProvider;
 import com.grech.repository.SpecificationProviderManager;
@@ -15,9 +16,9 @@ public class BookSpecificationProviderManager implements SpecificationProviderMa
     @Override
     public SpecificationProvider<Book> getSpecificationProvider(String key) {
         return bookSpecificationProviders.stream()
-                .filter(p -> p.getKey().equals(key))
+                .filter(provider -> provider.getKey().equals(key))
                 .findFirst()
-                .orElseThrow(() -> new RuntimeException("Can`t find correct specification "
+                .orElseThrow(() -> new EntityNotFoundException("Can`t find correct specification "
                         + "provider for key " + key));
     }
 }
