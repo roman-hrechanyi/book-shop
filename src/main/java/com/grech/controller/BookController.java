@@ -1,7 +1,8 @@
 package com.grech.controller;
 
-import com.grech.dto.BookDto;
-import com.grech.dto.CreateBookRequestDto;
+import com.grech.dto.book.BookDto;
+import com.grech.dto.book.BookSearchParameters;
+import com.grech.dto.book.CreateBookRequestDto;
 import com.grech.service.BookService;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -46,5 +47,10 @@ public class BookController {
     @PutMapping("/{id}")
     public BookDto update(@PathVariable Long id, @RequestBody CreateBookRequestDto requestDto) {
         return bookService.update(id,requestDto);
+    }
+
+    @GetMapping("/search")
+    public List<BookDto> search(BookSearchParameters searchParameters) {
+        return bookService.search(searchParameters);
     }
 }

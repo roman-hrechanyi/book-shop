@@ -1,4 +1,4 @@
-package com.grech.dto;
+package com.grech.dto.book;
 
 import java.math.BigDecimal;
 import lombok.Data;

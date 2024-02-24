@@ -1,13 +1,16 @@
 package com.grech.service;
 
-import com.grech.dto.BookDto;
-import com.grech.dto.CreateBookRequestDto;
+import com.grech.dto.book.BookDto;
+import com.grech.dto.book.BookSearchParameters;
+import com.grech.dto.book.CreateBookRequestDto;
 import com.grech.exception.EntityNotFoundException;
 import com.grech.mapper.BookMapper;
 import com.grech.model.Book;
-import com.grech.repository.BookRepository;
+import com.grech.repository.book.BookRepository;
+import com.grech.repository.book.BookSpecificationBuilder;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
@@ -15,6 +18,7 @@ import org.springframework.stereotype.Service;
 public class BookServiceImpl implements BookService {
     private final BookRepository bookRepository;
     private final BookMapper bookMapper;
+    private final BookSpecificationBuilder specificationBuilder;
 
     @Override
     public BookDto save(CreateBookRequestDto requestDto) {
@@ -53,5 +57,13 @@ public class BookServiceImpl implements BookService {
         Book book = bookMapper.toModel(requestDto);
         book.setId(id);
         return bookMapper.toDto(bookRepository.save(book));
+    }
+
+    @Override
+    public List<BookDto> search(BookSearchParameters searchParameters) {
+        Specification<Book> specification = specificationBuilder.build(searchParameters);
+        return bookRepository.findAll(specification).stream()
+                .map(bookMapper::toDto)
+                .toList();
     }
 }
